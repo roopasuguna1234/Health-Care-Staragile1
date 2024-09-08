@@ -3,6 +3,7 @@ pipeline {
   environment {
     MAVEN_HOME = tool name: 'maven', type: 'maven'
     USER_NAME = 'nkcharan'
+    DOCKERHUB_CREDENTIALS = credentials('dockerhubs')
   }
   stages {
     stage('Clone the Repository') {
@@ -21,6 +22,12 @@ pipeline {
         }
       }
     }
+    // **********************************************************
+      stage('Build the Docker Image') {
+      steps {
+        sh 'docker build -t capstonehealth .'
+      }
+    }
 
     // ********************************************************************************* //
     stage('Docker Login') {
@@ -31,13 +38,7 @@ pipeline {
         }
       }
     }
-   // ********************************************************************************* //
-    stage('Build the Docker Image') {
-      steps {
-        sh 'docker build -t capstonehealth .'
-      }
-    }
-    // ********************************************************************************* //
+       // ********************************************************************************* //
     stage('Push the Image to Docker Hub') {
       steps {
         script {
