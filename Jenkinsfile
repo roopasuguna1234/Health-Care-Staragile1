@@ -6,6 +6,10 @@ pipeline {
     IMAGE_NAME = 'updatedhealthproject'
     DOCKERHUB_CREDENTIALS = credentials('dockers')
     IMAGE_VERSION = 'v2'
+    KUBE_SSH_CREDS = credentials('kube-creds')
+    KUBE_SERVER = 'kubes'
+    KUBE_DIR = '/home/testing/files'
+
   }
   stages {
     stage('Clone the Repository') {
@@ -78,6 +82,23 @@ pipeline {
       }
     }
   }
+
+    stage('Deploy to Kubernetes') {
+            steps {
+                script {
+                    sshagent (credentials: ['kube-creds']) {
+                        // SSH into the Kubernetes server and apply YAML files from the specified directory
+                        sh '''
+                        ssh -o StrictHostKeyChecking=no kubes@172.31.24.85 "
+                        cd ${KUBE_DIR} &&
+                        kubectl apply -f service.yaml &&
+                        kubectl apply -f deployment.yaml
+                        "
+                        '''
+                    }
+                }
+            }
+        }
 
   post {
     success {
