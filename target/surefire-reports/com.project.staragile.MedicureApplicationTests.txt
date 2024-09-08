@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.project.staragile.MedicureApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 11.848 s - in com.project.staragile.MedicureApplicationTests
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.498 s - in com.project.staragile.MedicureApplicationTests
