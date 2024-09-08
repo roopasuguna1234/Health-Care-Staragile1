@@ -9,7 +9,6 @@ pipeline {
     KUBE_SSH_CREDS = credentials('kube-creds')
     KUBE_SERVER = 'kubes'
     KUBE_DIR = '/home/testing/files'
-
   }
   stages {
     stage('Clone the Repository') {
@@ -81,25 +80,25 @@ pipeline {
         sh 'docker push ${USER_NAME}/${IMAGE_NAME}:${IMAGE_VERSION}'
       }
     }
-  }
 
     stage('Deploy to Kubernetes') {
-            steps {
-                script {
-                    sshagent (credentials: ['kube-creds']) {
-                        // SSH into the Kubernetes server and apply YAML files from the specified directory
-                        sh '''
-                        ssh -o StrictHostKeyChecking=no kubes@172.31.24.85 "
-                        cd ${KUBE_DIR} &&
-                        kubectl apply -f service.yaml &&
-                        kubectl apply -f deployment.yaml
-                        "
-                        '''
-                    }
-                }
-            }
+      steps {
+        script {
+          sshagent (credentials: ['kube-creds']) {
+            // SSH into the Kubernetes server and apply YAML files from the specified directory
+            sh '''
+            ssh -o StrictHostKeyChecking=no kubes@172.31.24.85 "
+            cd ${KUBE_DIR} &&
+            kubectl apply -f service.yaml &&
+            kubectl apply -f deployment.yaml
+            "
+            '''
+          }
         }
-
+      }
+    }
+  }
+  
   post {
     success {
       script {
