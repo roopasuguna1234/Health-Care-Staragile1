@@ -47,4 +47,11 @@ pipeline {
     //   }
     // }
   }
+  post {
+    success {
+      script {
+        echo 'Pipeline succeeded! Image has been pushed to Docker Hub.'
+      }
+    }
+  }
 }
