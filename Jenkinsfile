@@ -5,7 +5,7 @@ pipeline {
     USER_NAME = 'nkcharan'
     IMAGE_NAME = 'updatedhealthproject'
     DOCKERHUB_CREDENTIALS = credentials('dockers')
-    IMAGE_VERSION = v2
+    IMAGE_VERSION = 'v2'
   }
   stages {
     stage('Clone the Repository') {
