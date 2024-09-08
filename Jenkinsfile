@@ -3,7 +3,7 @@ pipeline {
   environment {
     MAVEN_HOME = tool name: 'maven', type: 'maven'
     USER_NAME = 'nkcharan'
-    DOCKERHUB_CREDENTIALS = credentials('dockerhubs')
+    DOCKERHUB_CREDENTIALS = credentials('dockers')
   }
   stages {
     stage('Clone the Repository') {
@@ -30,11 +30,11 @@ pipeline {
 
     stage('Docker Login') {
       steps {
-        script {
-          withCredentials([usernamePassword(credentialsId: 'dockerhubs', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-            sh 'echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin'
-          }
-        }
+       script {
+        withCredentials([usernamePassword(credentialsId: 'dockers', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+        sh "echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin"
+      }
+    }
       }
     }
   }
