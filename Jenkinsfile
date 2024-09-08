@@ -29,51 +29,6 @@ pipeline {
       }
     }
 
-
-
-
-
-
-
-
-
-
-  
-  //   stage('Docker Login') {
-  //     steps {
-  //       script {
-  //         withCredentials([usernamePassword(credentialsId: 'dockerhubs', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-  //         }
-  //       }
-  //     }
-  //   }
- 
-  //   stage('Push the Image to Docker Hub') {
-  //     steps {
-  //       script {
-  //         sh 'docker tag capstonehealth ${DOCKER_USERNAME}/capstonehealth:v1'
-  //         sh 'docker push ${DOCKER_USERNAME}/capstonehealth:v1'
-  //       }
-  //     }
-  //   }
-  // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   post {
     success {
       script {
@@ -81,4 +36,5 @@ pipeline {
       }
     }
   }
+}
 }
