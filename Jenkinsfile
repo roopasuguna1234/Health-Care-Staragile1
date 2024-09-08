@@ -81,22 +81,22 @@ pipeline {
       }
     }
 
-    stage('Deploy to Kubernetes') {
-      steps {
-        script {
-          sshagent (credentials: ['ssh-key']) {
-            // SSH into the Kubernetes server and apply YAML files from the specified directory
-            sh '''
-            ssh -o StrictHostKeyChecking=no kubes@172.31.24.85 "
-            cd ${KUBE_DIR} &&
-            kubectl apply -f service.yaml &&
-            kubectl apply -f deployment.yaml
-            "
-            '''
-          }
-        }
-      }
-    }
+    // stage('Deploy to Kubernetes') {
+    //   steps {
+    //     script {
+    //       sshagent (credentials: ['ssh-key']) {
+    //         // SSH into the Kubernetes server and apply YAML files from the specified directory
+    //         sh '''
+    //         ssh -o StrictHostKeyChecking=no kubes@172.31.24.85 "
+    //         cd ${KUBE_DIR} &&
+    //         kubectl apply -f service.yaml &&
+    //         kubectl apply -f deployment.yaml
+    //         "
+    //         '''
+    //       }
+    //     }
+    //   }
+    // }
   }
   
   post {
