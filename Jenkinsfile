@@ -22,12 +22,12 @@ pipeline {
       }
     }
 
-
     stage('Build the Docker Image') {
       steps {
         sh 'docker build -t capstonehealth .'
       }
     }
+  }
 
   post {
     success {
@@ -36,5 +36,4 @@ pipeline {
       }
     }
   }
-}
 }
