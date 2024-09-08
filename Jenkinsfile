@@ -24,7 +24,7 @@ pipeline {
 
     stage('Build the Docker Image') {
       steps {
-        sh 'docker buildx build -t capstonehealth .'
+        sh 'docker  build -t capstonehealth .'
       }
     }
   }
