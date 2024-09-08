@@ -24,31 +24,20 @@ pipeline {
 
     stage('Build the Docker Image') {
       steps {
-        sh 'docker  build -t capstonehealth .'
+        sh 'docker build -t capstonehealth .'
       }
     }
-  }
 
-  stage('Docker Login') {
+    stage('Docker Login') {
       steps {
         script {
           withCredentials([usernamePassword(credentialsId: 'dockerhubs', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+            sh 'echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin'
           }
         }
       }
-    
+    }
   }
-
-
-
-
-
-
-
-
-
-
-
 
   post {
     success {
