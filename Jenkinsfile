@@ -6,7 +6,7 @@ pipeline {
   stages {
     stage('Clone the Repository') {
       steps {
-        git branch: 'health', credentialsId: 'GitHub', url: 'https://github.com/charannk007/Health-Care-Staragile.git'
+        git branch: 'health', credentialsId: 'git', url: 'https://github.com/charannk007/Health-Care-Staragile.git'
       }
     }
 
@@ -31,22 +31,20 @@ pipeline {
         }
       }
     }
-
     // ********************************************************************************* //
-    stage('Build the Docker Image') {
-      steps {
-        sh 'docker build -t capstonehealth .'
-      }
-    }
-
-    // ********************************************************************************* //
-    stage('Push the Image to Docker Hub') {
-      steps {
-        script {
-          sh 'docker tag capstonehealth ${DOCKER_USERNAME}/capstonehealth:latest'
-          sh 'docker push ${DOCKER_USERNAME}/capstonehealth:latest'
-        }
-      }
-    }
+    // stage('Build the Docker Image') {
+    //   steps {
+    //     sh 'docker build -t capstonehealth .'
+    //   }
+    // }
+    // // ********************************************************************************* //
+    // stage('Push the Image to Docker Hub') {
+    //   steps {
+    //     script {
+    //       sh 'docker tag capstonehealth ${DOCKER_USERNAME}/capstonehealth:latest'
+    //       sh 'docker push ${DOCKER_USERNAME}/capstonehealth:latest'
+    //     }
+    //   }
+    // }
   }
 }
