@@ -86,7 +86,7 @@ pipeline {
     }
     stage('Deploying the application to production') {
       steps {
-        sh 'kubectl apply -f app-deploy.yml'
+        sh 'kubectl apply -f deploy.yml'
         sh 'kubectl get svc'
       }
     }
