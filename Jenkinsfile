@@ -7,14 +7,14 @@ pipeline {
   stages {
     stage('build the project') {
       steps {
-        git 'https://github.com/charannk007/Health-Care-Staragile.git'
+        git 'https://github.com/Neeraja037/Health-Care-Staragile1.git'
         sh 'mvn clean package'
       }
     }
     stage('Building docker image') {
       steps {
         script {
-          sh 'docker build -t nkcharan/health:v2 .'
+          sh 'docker build -t user977/health:v2 .'
           sh 'docker images'
         }
       }
@@ -23,7 +23,7 @@ pipeline {
       steps {
         withCredentials([usernamePassword(credentialsId: 'docker-creds', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
           sh "echo $PASS | docker login -u $USER --password-stdin"
-          sh 'docker push nkcharan/health:v2'
+          sh 'docker push user977/health:v2'
         }
       }
     }
