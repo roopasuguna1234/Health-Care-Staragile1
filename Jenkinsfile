@@ -7,7 +7,7 @@ pipeline {
   stages {
     stage('build the project') {
       steps {
-        git 'https://github.com/Neeraja037/Health-Care-Staragile1.git'
+        git 'https://github.com/roopasuguna1234/Health-Care-Staragile1.git'
         sh 'mvn clean package'
       }
     }
