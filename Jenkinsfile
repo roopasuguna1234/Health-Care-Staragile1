@@ -14,7 +14,7 @@ pipeline {
     stage('Building docker image') {
       steps {
         script {
-          sh 'docker build -t user977/health:v2 .'
+          sh 'docker build -t roopa27/health:v2 .'
           sh 'docker images'
         }
       }
@@ -23,7 +23,7 @@ pipeline {
       steps {
         withCredentials([usernamePassword(credentialsId: 'docker-creds', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
           sh "echo $PASS | docker login -u $USER --password-stdin"
-          sh 'docker push user977/health:v2'
+          sh 'docker push roopa27/health:v2'
         }
       }
     }
